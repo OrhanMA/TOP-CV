@@ -13,6 +13,9 @@ export interface FormProps {
   updateEducation: (e: ChangeEvent<HTMLInputElement>) => void;
   education: EducationInterface;
   addEducation: () => void;
+  updateExperience: (e: ChangeEvent<HTMLInputElement>) => void;
+  experience: ExperienceInterface;
+  addExperience: () => void;
 }
 
 export interface PersonProps {
@@ -25,6 +28,11 @@ export interface FormEducationProps {
   education: EducationInterface;
   addEducation: () => void;
 }
+export interface FormExperienceProps {
+  updateExperience: (e: ChangeEvent<HTMLInputElement>) => void;
+  experience: ExperienceInterface;
+  addExperience: () => void;
+}
 
 export interface EducationInterface {
   date_from: string;
@@ -33,14 +41,27 @@ export interface EducationInterface {
   location: string;
   degree: string;
 }
+export interface ExperienceInterface {
+  date_from: string;
+  date_to: string;
+  company: string;
+  location: string;
+  mission: string;
+}
 
 export interface CvInfos {
   person: Person;
   educationArray: EducationInterface[];
   deleteEducation: (indexToDelete: number) => void;
+  experienceArray: ExperienceInterface[];
+  deleteExperience: (indexToDelete: number) => void;
 }
 
 export interface EducationProps {
   educationArray: EducationInterface[];
   deleteEducation: (indexToDelete: number) => void;
+}
+export interface ExperienceProps {
+  experienceArray: ExperienceInterface[];
+  deleteExperience: (indexToDelete: number) => void;
 }

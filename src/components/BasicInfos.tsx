@@ -5,7 +5,7 @@ import { Person } from "../types/types";
 
 export default function BasicInfos({ person }: Infos) {
   return (
-    <div className="flex flex-col items-center py-6 gap-4 bg-sky-950 text-white">
+    <div className="flex flex-col items-center py-6 gap-4 bg-yellow-500 text-white">
       {person.fullname && <h1 className="text-3xl">{person.fullname}</h1>}
       {person.email && (
         <div className="flex items-center gap-2">

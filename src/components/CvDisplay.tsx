@@ -7,6 +7,8 @@ export default function CvDisplay({
   person,
   educationArray,
   deleteEducation,
+  experienceArray,
+  deleteExperience,
 }: CvInfos) {
   return (
     <div className="flex flex-col w-full sm:w-2/3">
@@ -16,7 +18,10 @@ export default function CvDisplay({
           educationArray={educationArray}
           deleteEducation={deleteEducation}
         />
-        <ProExperience />
+        <ProExperience
+          experienceArray={experienceArray}
+          deleteExperience={deleteExperience}
+        />
       </div>
     </div>
   );

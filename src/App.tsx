@@ -1,6 +1,6 @@
 import CvDisplay from "./components/CvDisplay";
 import FormGroup from "./components/FormGroup";
-import { EducationInterface, Person } from "./types/types";
+import { EducationInterface, ExperienceInterface, Person } from "./types/types";
 import { ChangeEvent, useState } from "react";
 
 function App() {
@@ -26,6 +26,24 @@ function App() {
       degree: "Computer Science",
     },
   ]);
+  const [experience, setExperience] = useState<ExperienceInterface>({
+    date_from: "",
+    date_to: "",
+    company: "",
+    location: "",
+    mission: "",
+  });
+  const [experienceArray, setExperienceArray] = useState<ExperienceInterface[]>(
+    [
+      {
+        date_from: "11/11/2020",
+        date_to: "10/10/2022",
+        company: "Company.co",
+        location: "New York",
+        mission: "Doing crazy stuff",
+      },
+    ]
+  );
 
   function handleChangePerson(e: ChangeEvent<HTMLInputElement>) {
     setPerson((prev) => {
@@ -44,6 +62,14 @@ function App() {
       };
     });
   }
+  function handleChangeExperience(e: ChangeEvent<HTMLInputElement>) {
+    setExperience((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  }
 
   function addEducation() {
     setEducationArray([...educationArray, education]);
@@ -53,6 +79,16 @@ function App() {
       university: "",
       location: "",
       degree: "",
+    });
+  }
+  function addExperience() {
+    setExperienceArray([...experienceArray, experience]);
+    setExperience({
+      date_from: "",
+      date_to: "",
+      company: "",
+      location: "",
+      mission: "",
     });
   }
 
@@ -66,6 +102,16 @@ function App() {
       return updatedEducationArray;
     });
   }
+  function deleteExperience(indexToDelete: number) {
+    setExperienceArray((prevExperienceArray) => {
+      // Create a new array without the education item at the specified index
+      const updatedExperienceArray = [
+        ...prevExperienceArray.slice(0, indexToDelete),
+        ...prevExperienceArray.slice(indexToDelete + 1),
+      ];
+      return updatedExperienceArray;
+    });
+  }
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 p-6 bg-neutral-100">
@@ -75,11 +121,16 @@ function App() {
         updateEducation={handleChangeEducation}
         education={education}
         addEducation={addEducation}
+        updateExperience={handleChangeExperience}
+        experience={experience}
+        addExperience={addExperience}
       />
       <CvDisplay
         person={person}
         educationArray={educationArray}
         deleteEducation={deleteEducation}
+        experienceArray={experienceArray}
+        deleteExperience={deleteExperience}
       />
     </div>
   );
