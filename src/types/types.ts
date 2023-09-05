@@ -65,3 +65,5 @@ export interface ExperienceProps {
   experienceArray: ExperienceInterface[];
   deleteExperience: (indexToDelete: number) => void;
 }
+
+export type CategoryType = "person" | "education" | "experience";
